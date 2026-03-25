@@ -35,7 +35,7 @@ export default function TabTwoScreen() {
         </ThemedView>
       }>
       <ThemedView style={styles.content}>
-        <ThemedText>
+        <ThemedText style={styles.tituloBolo}>
           BOLO DE CENOURA
         </ThemedText>
       </ThemedView>
@@ -57,4 +57,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 16,
   },
+  tituloBolo: {
+    fontFamily: Fonts.serif,
+    fontSize: 18,
+  }
 });
