@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TextInput, View, Text, Button } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -9,90 +9,81 @@ import { Link } from 'expo-router';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Doce alquimia</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+    <ParallaxScrollView 
+      headerBackgroundColor={{ light: '#8C5B3E', dark: '#8C5B3E' }}
+      headerImage={
+        <ThemedView style={styles.headerContainer}>
+          <ThemedText type="title" style={styles.title}>
+            Doce Alquimia
+          </ThemedText>
+          <ThemedText type="subtitle" style={styles.subtitle}>
+            Onde ingredientes simples são transformados em algo valioso e especial
+          </ThemedText>
+        </ThemedView>
+      }
+    >
+      <View style={styles.content}>
+        <Text>Email address</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="email-address"
+          placeholder="Digite seu email"
+        />
+
+        <Text>Password</Text>
+        <TextInput
+          style={styles.input}
+          secureTextEntry
+          placeholder="Digite sua senha"
+        />
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 40 }}>
+          <Text>Check me out</Text>
+        </View>
+
+        <Button title="Submit" onPress={() => console.log("Form enviado")} />
+      </View>
     </ParallaxScrollView>
+
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    backgroundColor: '#D9B79B'
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  headerContainer: {
     position: 'absolute',
+    top: 40,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    backgroundColor: '#8C5B3E',
+  },
+  title: {
+    color: '#fff',
+    marginTop: 80,
+    backgroundColor: '#8C5B3E',
+  },
+  subtitle: {
+    color: '#fff',
+    marginTop: 30,
+    textAlign: 'center',
+    backgroundColor: '#8C5B3E',
+    fontSize: 15,
+  },
+  content: {
+    marginTop: 140,
+    paddingHorizontal: 16,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginTop: 10,
+    paddingHorizontal: 8,
+    backgroundColor: '#fff',
   },
 });
