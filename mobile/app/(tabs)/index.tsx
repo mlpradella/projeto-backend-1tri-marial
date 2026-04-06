@@ -1,15 +1,15 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet, TextInput, View, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, View, Text, Button, Image } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
 
 export default function HomeScreen() {
-  return (
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
+  return (
     <ParallaxScrollView 
       headerBackgroundColor={{ light: '#8C5B3E', dark: '#8C5B3E' }}
       headerImage={
@@ -23,29 +23,34 @@ export default function HomeScreen() {
         </ThemedView>
       }
     >
-      <View style={styles.content}>
-        <Text>Email address</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType="email-address"
-          placeholder="Digite seu email"
-        />
 
-        <Text>Password</Text>
+      <View style={styles.content}>
+        <Text style={styles.loginTitle}>USER LOGIN</Text>
+
+        <TextInput
+          style={styles.input1}
+          keyboardType="email-address"
+          placeholder="Use or email"
+          value={email}
+          onChangeText={setEmail}
+        />
         <TextInput
           style={styles.input}
           secureTextEntry
-          placeholder="Digite sua senha"
+          placeholder="Password"
+          value={senha}
+          onChangeText={setSenha}
         />
-
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 40 }}>
-          <Text>Check me out</Text>
-        </View>
-
-        <Button title="Submit" onPress={() => console.log("Form enviado")} />
       </View>
-    </ParallaxScrollView>
+      <View style={styles.loginButton}>
+  <Button 
+    title="Login in" 
+    onPress={() => console.log("Form enviado", { email, senha })} 
+  />
+</View>
 
+     
+    </ParallaxScrollView>
   );
 }
 
@@ -75,15 +80,42 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   content: {
-    marginTop: 140,
+    marginTop: 200,
     paddingHorizontal: 16,
   },
+  input1: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    backgroundColor: '#fff',
+    marginBottom: 25,
+  },
+
   input: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
+    borderRadius: 8,
     marginTop: 10,
     paddingHorizontal: 8,
     backgroundColor: '#fff',
   },
+
+  loginButton: {
+    marginTop: 20,
+    width: '100%',    
+    maxWidth: 200,      
+    alignSelf: 'center', 
+  },
+
+  loginTitle:{
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 40,
+    color: '#fff'
+  },
+  
 });
