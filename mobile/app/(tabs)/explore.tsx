@@ -1,11 +1,76 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Button, FlatList} from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
-
+import * as ImagePicker from 'expo-image-picker';
+import { useState } from 'react';
 
 export default function TabTwoScreen() {
+  const [imageUri, setImageUri] = useState<string | null>(null);
+
+  const pickImage = async () => {
+    // pede permissão
+    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permission.granted) {
+      alert('Permissão para acessar a galeria é necessária!');
+      return;
+    }
+
+    // abre a galeria
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImageUri(result.assets[0].uri);
+    }
+  };
+
+  type Bolo = {
+    id: string;
+    titulo: string;
+    descricao: string;
+    imagem?: any;
+  };
+  
+  
+  const bolos = [
+    {
+      id: '1',
+      titulo: 'BOLO DE CENOURA',
+      descricao:
+        'Fofinho e doce, com um toque de leveza. Com a cobertura de chocolate, cria uma combinação irresistível.',
+      imagem: imageUri || require('../../assets/images/image.png'),
+    },
+    {
+      id: '2',
+      titulo: 'BOLO DE PRESTÍGIO',
+      descricao:
+        'Uma mistura de chocolate com coco. Criando uma combinação cremosa e macia.',
+      imagem: require('../../assets/images/image-2.png'),
+    },
+    {
+      id: '3',
+      titulo: 'BOLO DE CÔCO',
+      descricao:
+         'Úmido e suave, com o sabor do coco presente na cobertura e na massa. Uma opção leve, com sabor delicado e com textura macia.',
+      imagem: imageUri || require('../../assets/images/image-3.png'),
+    },
+  ];
+
+  const renderItem = ({ item } : { item: Bolo }) => (
+    <ThemedView style={styles.row}>
+      <Image source={item.imagem} style={styles.imagem} />
+      <View style={styles.textContainer}>
+        <ThemedText style={styles.text}>{item.titulo}</ThemedText>
+        <ThemedText style={styles.descricao}>{item.descricao}</ThemedText>
+      </View>
+    </ThemedView>
+  );
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#8C5B3E', dark: '#8C5B3E' }}
@@ -17,7 +82,7 @@ export default function TabTwoScreen() {
               fontFamily: Fonts.serif,
               color: '#fff',
               marginTop: 80,
-              backgroundColor: '#8C5B3E'
+              backgroundColor: '#8C5B3E',
             }}>
             Doce Alquimia
           </ThemedText>
@@ -35,14 +100,15 @@ export default function TabTwoScreen() {
           </ThemedText>
         </ThemedView>
       }>
-     <ThemedView style={styles.row}>
-      <Image
-      source={require('../../assets/images/image.png')}
-      style={styles.imagem}
-      />
-      <ThemedText style={styles.text}>BOLO DE CENOURA</ThemedText>
-     </ThemedView>
-     <ThemedText style={styles.descricao}>Fofinho e doce, com um toque de leveza. Com a cobertura de chocolate, cria uma combinação irresistível.</ThemedText>
+
+        <FlatList<Bolo>
+          data={bolos}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          />
+      
+
+      <Button title="Escolher imagem" onPress={pickImage} />
     </ParallaxScrollView>
   );
 }
@@ -53,16 +119,9 @@ const styles = StyleSheet.create({
     top: 40,
     left: 0,
     right: 0,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     paddingHorizontal: 16,
-    backgroundColor: '#8C5B3E'
-  },
-  content: {
-    marginTop: 16,
-    paddingHorizontal: 16,
-    padding: 1,
-    marginRight: 16,
-    alignSelf: 'flex-start',
+    backgroundColor: '#8C5B3E',
   },
   row: {
     flexDirection: 'row',
@@ -74,18 +133,22 @@ const styles = StyleSheet.create({
     height: 100,
     marginRight: 12,
     alignSelf: 'flex-start',
-    alignItems: 'flex-start',
+    marginBottom: 8,
   },
   text: {
     color: '#fff',
     fontFamily: Fonts.serif,
     fontSize: 18,
-    top: 1,
+    marginBottom: 4,
   },
   descricao: {
     color: '#fff',
     fontFamily: Fonts.serif,
     fontSize: 18,
-    top: 1,
-  }
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  
 });
