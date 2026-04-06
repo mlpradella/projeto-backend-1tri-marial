@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
+
 
 export default function TabTwoScreen() {
   return (
@@ -34,11 +35,14 @@ export default function TabTwoScreen() {
           </ThemedText>
         </ThemedView>
       }>
-      <ThemedView style={styles.content}>
-        <ThemedText style={styles.tituloBolo}>
-          BOLO DE CENOURA
-        </ThemedText>
-      </ThemedView>
+     <ThemedView style={styles.row}>
+      <Image
+      source={require('../../assets/images/image.png')}
+      style={styles.imagem}
+      />
+      <ThemedText style={styles.text}>BOLO DE CENOURA</ThemedText>
+     </ThemedView>
+     <ThemedText style={styles.descricao}>Fofinho e doce, com um toque de leveza. Com a cobertura de chocolate, cria uma combinação irresistível.</ThemedText>
     </ParallaxScrollView>
   );
 }
@@ -56,9 +60,32 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 16,
     paddingHorizontal: 16,
+    padding: 1,
+    marginRight: 16,
+    alignSelf: 'flex-start',
   },
-  tituloBolo: {
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 16,
+  },
+  imagem: {
+    width: 110,
+    height: 100,
+    marginRight: 12,
+    alignSelf: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  text: {
+    color: '#fff',
     fontFamily: Fonts.serif,
     fontSize: 18,
+    top: 1,
+  },
+  descricao: {
+    color: '#fff',
+    fontFamily: Fonts.serif,
+    fontSize: 18,
+    top: 1,
   }
 });
