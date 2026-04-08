@@ -108,7 +108,7 @@ export default function TabTwoScreen() {
           />
       
 
-      <Button title="Escolher imagem" onPress={pickImage} />
+
     </ParallaxScrollView>
   );
 }
