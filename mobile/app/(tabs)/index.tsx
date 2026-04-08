@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Text, Button, Image } from 'react-native';
+import { StyleSheet, TextInput, View, Text, Button } from 'react-native';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { Image } from 'react-native';
+import { Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
   const [email, setEmail] = useState('');
@@ -23,6 +27,14 @@ export default function HomeScreen() {
         </ThemedView>
       }
     >
+      <View style={{ width: '100%', alignItems: 'center' }}>
+      <Image 
+        source={require('../../assets/images/calda.png')} 
+        style={styles.imagem}
+        />
+      </View>
+
+
 
       <View style={styles.content}>
         <Text style={styles.loginTitle}>USER LOGIN</Text>
@@ -46,6 +58,7 @@ export default function HomeScreen() {
   <Button 
     title="Login in" 
     onPress={() => console.log("Form enviado", { email, senha })} 
+    color="#8C5B3E"
   />
 </View>
 
@@ -58,6 +71,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#D9B79B'
   },
+  imagem: {
+    width: screenWidth, 
+    height: 120,     
+    resizeMode: 'cover', 
+    marginTop: -34,
+  },  
   headerContainer: {
     position: 'absolute',
     top: 40,
@@ -80,7 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   content: {
-    marginTop: 200,
+    marginTop: 100,
     paddingHorizontal: 16,
   },
   input1: {
@@ -89,18 +108,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 8,
-    backgroundColor: '#fff',
+    backgroundColor: '#8C5B3E',
+    color: '#fff',
     marginBottom: 25,
   },
 
   input: {
+    color: '#fff',
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 10,
     paddingHorizontal: 8,
-    backgroundColor: '#fff',
+    backgroundColor: '#8C5B3E',
   },
 
   loginButton: {
