@@ -5,9 +5,11 @@ import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 
 export default function TabTwoScreen() {
   const [imageUri, setImageUri] = useState<string | null>(null);
+  const router = useRouter();
 
   const pickImage = async () => {
     // pede permissão
@@ -54,7 +56,7 @@ export default function TabTwoScreen() {
     },
     {
       id: '3',
-      titulo: 'BOLO DE CÔCO',
+      titulo: 'BOLO DE COCO',
       descricao:
          'Úmido e suave, com o sabor do coco presente na cobertura e na massa. Uma opção leve, com sabor delicado e com textura macia.',
       imagem: imageUri || require('../../assets/images/image-3.png'),
@@ -67,6 +69,7 @@ export default function TabTwoScreen() {
       <View style={styles.textContainer}>
         <ThemedText style={styles.text}>{item.titulo}</ThemedText>
         <ThemedText style={styles.descricao}>{item.descricao}</ThemedText>
+        
       </View>
     </ThemedView>
   );
@@ -107,8 +110,16 @@ export default function TabTwoScreen() {
           keyExtractor={(item) => item.id}
           />
       
-
-
+      <View style={styles.button}>
+        <Button
+        title="Nova receita"
+        onPress={() => {
+          console.log('/(tabs)/explore');
+          router.push('/(tabs)/Receitas');
+        }}
+        color="#8C5B3E"
+        />
+      </View>
     </ParallaxScrollView>
   );
 }
@@ -150,5 +161,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
   },
-  
+  button: {
+    backgroundColor: '#8C5B3E',
+    paddingHorizontal: 40,
+    borderRadius: 8,
+  },
 });
