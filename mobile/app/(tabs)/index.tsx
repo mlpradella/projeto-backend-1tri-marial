@@ -6,12 +6,14 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Image } from 'react-native';
 import { Dimensions } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const router = useRouter();
 
   return (
     <ParallaxScrollView 
@@ -27,7 +29,7 @@ export default function HomeScreen() {
         </ThemedView>
       }
     >
-      <View style={{ width: '100%', alignItems: 'center' }}>
+      <View style={{ alignItems: 'center' }}>
       <Image 
         source={require('../../assets/images/calda.png')} 
         style={styles.imagem}
@@ -55,12 +57,15 @@ export default function HomeScreen() {
         />
       </View>
       <View style={styles.loginButton}>
-  <Button 
-    title="Login in" 
-    onPress={() => console.log("Form enviado", { email, senha })} 
-    color="#8C5B3E"
-  />
-</View>
+        <Button 
+          title="Login in" 
+          onPress={() => {
+            console.log("Form enviado", { email, senha });
+            router.push('/(tabs)/explore'); 
+          }} 
+          color="#8C5B3E"
+        />
+      </View>
 
      
     </ParallaxScrollView>
@@ -129,6 +134,7 @@ const styles = StyleSheet.create({
     width: '100%',    
     maxWidth: 200,      
     alignSelf: 'center', 
+    
   },
 
   loginTitle:{
