@@ -1,4 +1,5 @@
 # projeto-backend-1tri-marial
+# Projeto Receitas de bolo
 
 # Integrantes do grupo 
 ## Integrantes do grupo
@@ -6,14 +7,11 @@
 - Kamilly Lacerda N. 16  
 - Maria Luiza P N. 21
 
-
 # Protótipo do Figma 
  https://www.figma.com/design/JgezY69buXCaMDOsoS013v/Site-de-Receitas?node-id=0-1&t=HbE1X56RDC3e34rl-1
 
- # Sobre o site 
-Este é um site sobre receitas de bolos. 
-Foi feito com o objetivo de mostrar as receitas de bolo, uma 
-breve descrição e a possibilidade de adicionar sua própria receita. 
+# Sobre o Aplicativo
+O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um espaço digital simples. Ele permite que os usuários conheçam novas receitas, leiam descrições e adicionem suas próprias criações. Nosso projeto é constituido por três páginas, login, receitas e adicionar receitas. A página de login é onde o usuário pode adicionar seu email e senha e pode acessar o sistema, a de receitas é onde o usuário consegue ver todas as receitas de bolo já cadastradas junto de uma breve descrição, e a de adicionar é receitas é a página em que o usuário pode adicionar sua própria receita.
 
 # Tecnologias usadas
 - Figma (prototipagem)
@@ -21,47 +19,48 @@ breve descrição e a possibilidade de adicionar sua própria receita.
 - Python
 - Postman
 - React Native
+- JavaScript
 
 # Páginas 
 ## Primeira tela (Tela de login) Maria Luiza
 ### Descrição
-- Está é a primeira página, a tela inicial do site Doce Alquimia, onde o usuário pode acessar sua conta, para entrar no site e ver as receitas postadas e adicionar novas receitas. 
+- Está é a primeira página, a tela inicial do aplicativo Doce Alquimia, onde o usuário pode acessar sua conta, para entrar no site e ver as receitas postadas e adicionar novas receitas. 
 
-## Observações 
-- Os campos de escrita são funcionais e o acesso ao site, é por meio do botão "Login in", localizado no final da página. 
+## Componentes 
+- Cabeçalho com título e subtítulo do aplicativo.
+- O titulo "user". 
+- Campos de escrita para user e senha.
 
 ## Dificuldades/Problemas durante o projeto 
 - A dificuldade principal foi para adicionar e arrumar a imagem da calda, pois ela estava ficando muito desregular.
 - Outros problemas foram os campos de escrita, "user" e "password", por alguns erros meus, a escrita desaparecia, o campo ainda funcionava, porém a escrita não aparecia quando digitada. 
-
-## Solucões para os problemas
-- Para solucionar a dificulade que eu tive com a imagem, eu tive que adicionar estilos inline diretamente dentro do componente. 
-- O erro no campo de escrita foi bobo. A escrita desaparecia pois a cor dela estava da mesma cor do fundo da "caixa", e eu demorei para perceber isso. 
 
 ## Imagem da página
 ![telalogin](mobile/assets/images/telalogin.png)
 
 # Segunda tela (Tela de receita)
 ### Descrição 
-- Está é a segunda página do site, a tela onde as receitas dos bolos estão. O usuário pode olhar nesta tela, fotos dos bolos e uma breve descrição. 
+- Está é a segunda página do aplicativo, a tela onde as receitas dos bolos estão. O usuário pode olhar nesta tela, fotos dos bolos e uma breve descrição. 
 
-## Observações 
-- O botão para a página seguinte, onde conseguira adicionar novas receitas está no final da página. 
+## Componentes 
+- Cabeçalho com título e subtítulo do aplicativo.
+- Imagens dos bolos junto das descrições.
+- O botão para a página seguinte.
 
 ## Dificuldades/Problemas durante o projeto
 - A principal dificuldade foi adicionar o botão que iria para a página de 'adicionar receitas'. 
 - Uma outra dificuldade foi colocar as imagens de bolo e as descrições uma embaixo da outra. Pois uma hora as imagens ficavam desproporcionais, e outras, as descrições ficavam confusas. 
 
-## Soluções para os problemas
-- Para a resolução do erro que estava dando no botão, eu tive que refazer o import, pois estava errado. 
-- As imagens eu tive que colocar a parte do "row" para que eu conseguisse deixar eles no centro.  
-
 ## Imagem da página 
 ![telalogin](mobile/assets/images/telareceitas.png)
 
 # Terceira tela 
+### Descrição
+- Está é a terceira página do aplicativo. O usuário pode adicionar suas receitas nesta tela, com fotos e descrições.
 
-##
+## Componentes 
+- Cabeçalho com título e subtítulo do aplicativo.
+- Campos para adicionar imagens e descrições. 
 
 
 
