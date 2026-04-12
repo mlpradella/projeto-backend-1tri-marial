@@ -2,7 +2,6 @@
 # Projeto Receitas de bolo
 
 # Integrantes do grupo 
-## Integrantes do grupo
 - Bianca Amorim N. 2  
 - Kamilly Lacerda N. 16  
 - Maria Luiza P N. 21
@@ -30,10 +29,12 @@ O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um e
 - Cabeçalho com título e subtítulo do aplicativo.
 - O titulo "user". 
 - Campos de escrita para user e senha.
+- Botão funcional para a segunda tela.
 
 ## Dificuldades/Problemas durante o projeto 
 - A dificuldade principal foi para adicionar e arrumar a imagem da calda, pois ela estava ficando muito desregular.
-- Outros problemas foram os campos de escrita, "user" e "password", por alguns erros meus, a escrita desaparecia, o campo ainda funcionava, porém a escrita não aparecia quando digitada. 
+- Outros problemas foram os campos de escrita, "user" e "password", por alguns erros meus, a escrita desaparecia, o campo ainda funcionava, porém a escrita não aparecia quando digitada.
+- E uma dificuldade foi para entender como transformar os campos de user e senha em algo funcional.
 
 ## Imagem da página
 ![telalogin](mobile/assets/images/telalogin.png)
@@ -45,7 +46,7 @@ O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um e
 ## Componentes 
 - Cabeçalho com título e subtítulo do aplicativo.
 - Imagens dos bolos junto das descrições.
-- O botão para a página seguinte.
+- O botão funcional para a terceira tela
 
 ## Dificuldades/Problemas durante o projeto
 - A principal dificuldade foi adicionar o botão que iria para a página de 'adicionar receitas'. 
@@ -60,7 +61,17 @@ O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um e
 
 ## Componentes 
 - Cabeçalho com título e subtítulo do aplicativo.
-- Campos para adicionar imagens e descrições. 
+- Um campo para poder adicionar o nome do bolo.
+- Duas caixas para adicionar as imagens do bolo.
+- Dois campos para adicionar ingredientes e modo de preparo.
 
+- ## Dificuldade/Problemas durante o projeto
+-  Tive que instalar algumas coisas para conseguir fazer com que o usuário pudesse adicionar uma imagem local da própria galeria para enviar junto com a receita. O botão de "enviar" não entrega para nenhum lugar por não tem um ambiente em que a receita consiga ficar guardada sem ser fazendo direto no postman.
+- A API começou dando certo mas em seguida alguns node modules foram baixados sozinhos pelo projeto, impossibilitando um commit correto por não finalizar o git add . e subir pastas que eram para estar com o gitignore. Não consegui fazer uma ligação da página e botão de envio para informações dentro da API, seja elas sendo enviadas ou retornando em formato de mensagem para o usuário.
+
+## Imagem da página 
+- Tivemos um problema com a imagem da terceira tela.
+
+Explicação: O projeto não consegue ser aberto no computador de nenhuma das três integrantes, e a imagem não foi tirada a tempo no computador do colegio, então ela não foi colocada na readme para a entrega parcial 1. 
 
 
