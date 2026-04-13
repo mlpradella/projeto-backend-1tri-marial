@@ -6,6 +6,7 @@ import { Fonts } from '@/constants/theme';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
+import * as React from 'react';
 
 export default function TabTwoScreen() {
   const [imageUri, setImageUri] = useState<string | null>(null);
