@@ -29,12 +29,16 @@ export default function HomeScreen() {
         </ThemedView>
       }
     >
-      <View style={{ alignItems: 'center' }}>
-      <Image 
-        source={require('../../assets/images/calda.png')} 
-        style={styles.imagem}
-        />
-      </View>
+     <View style={{ alignItems: 'center' }}>
+  <Image 
+    source={require('../../assets/images/calda.png')} 
+    style={styles.imagem}
+  />
+</View>
+
+        
+
+
 
 
 
@@ -77,9 +81,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#D9B79B'
   },
   imagem: {
-    width: screenWidth, 
-    height: 120,     
-    resizeMode: 'cover', 
+    width: screenWidth,  
+    height: 120,
+    resizeMode: 'cover',
     marginTop: -34,
   },  
   headerContainer: {

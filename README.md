@@ -70,8 +70,7 @@ O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um e
 - A API começou dando certo mas em seguida alguns node modules foram baixados sozinhos pelo projeto, impossibilitando um commit correto por não finalizar o git add . e subir pastas que eram para estar com o gitignore. Não consegui fazer uma ligação da página e botão de envio para informações dentro da API, seja elas sendo enviadas ou retornando em formato de mensagem para o usuário.
 
 ## Imagem da página 
-- Tivemos um problema com a imagem da terceira tela.
+![telalogin](mobile/assets/images/telaadicionar.png)
 
-Explicação: O projeto não consegue ser aberto no computador de nenhuma das três integrantes, e a imagem não foi tirada a tempo no computador do colegio, então ela não foi colocada na readme para a entrega parcial 1. 
 
 
