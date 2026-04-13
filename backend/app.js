@@ -2,9 +2,15 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const nodemailer = require("nodemailer");
+const fs = require("fs");
+const path = require("path");
 
 // Middleware para interpretar JSON
 app.use(express.json());
+
+// servir arquivos estáticos da pasta public (onde está o admin.html)
+app.use(express.static(path.join(__dirname, "public")));
 
 // Mock de dados - receitas
 let receitas = [
@@ -31,23 +37,23 @@ let receitas = [
   },
   {
     id: 3,
-    titulo: "Macarrão à Bolonhesa",
-    ingredientes: ["Macarrão", "Carne moída", "Molho de tomate", "Cebola", "Alho"],
-    preparo: "Cozinhe o macarrão, prepare o molho com carne e tomate, e misture tudo."
+    titulo: "Bolo de Coco",
+    ingredientes_massa: ["Massa: 2 xícaras (chá) de açúcar, 2 xícaras (chá) de farinha de trigo, 4 ovos, 1 xícara (chá) leite, 2 colheres (sopa) coco ralado, 1 colher (sopa) fermento em pó, 2 colheres (sopa) margarina sem sal"],
+    ingredientes_calda: ["Calda: 1 lata de leite condensado, 1 vidro (200 ml) leite de coco, 1 xícara de coco ralado"],
+    preparo_massa: ["Massa: Bata no liquidificador os ovos, o leite, a margarina, o açúcar e o coco. Coloque o trigo em uma vasilha, despeje a massa batida e misture até que fique homogêneo. Adicione o coco e misture. Por último, acrescente o fermento. Coloque em forma untada e enfarinhada. Asse em forno médio, preaquecido, por cerca de 40 minutos, ou até dourar."],
+    preparo_calda: ["Calda: Misture tudo (não precisa levar ao fogo), coloque sobre o bolo ainda quente e polvilhe coco ralado. Leve para gelar."],
   }
 ];
 
-// Rotas
+// Rotas principais
 app.get("/", (req, res) => {
-  res.send("API de Receitas está rodando 🍲");
+  res.send("API de Receitas está rodando");
 });
 
-// Listar todas as receitas
 app.get("/receitas", (req, res) => {
   res.json(receitas);
 });
 
-// Buscar receita por ID
 app.get("/receitas/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const receita = receitas.find(r => r.id === id);
@@ -58,17 +64,104 @@ app.get("/receitas/:id", (req, res) => {
   }
 });
 
-// Adicionar nova receita
 app.post("/receitas", (req, res) => {
-    const novaReceita = {
-      id: receitas.length + 1,
-      titulo: req.body.titulo,
-      ingredientes: req.body.ingredientes,
-      preparo: req.body.preparo
-    };
+  const novaReceita = {
+    id: receitas.length + 1,
+    titulo: req.body.titulo,
+    ingredientes: req.body.ingredientes,
+    preparo: req.body.preparo
+  };
   receitas.push(novaReceita);
   res.status(201).json(novaReceita);
 });
+
+app.put("/receitas/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const receitaIndex = receitas.findIndex(r => r.id === id);
+
+  if (receitaIndex !== -1) {
+    receitas[receitaIndex] = {
+      ...receitas[receitaIndex],
+      ...req.body,
+      id: id
+    };
+    res.json(receitas[receitaIndex]);
+  } else {
+    res.status(404).json({ mensagem: "Receita não encontrada" });
+  }
+});
+
+app.delete("/receitas/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const receitaIndex = receitas.findIndex(r => r.id === id);
+
+  if (receitaIndex !== -1) {
+    const receitaRemovida = receitas.splice(receitaIndex, 1);
+    res.json({ mensagem: "Receita removida com sucesso", receita: receitaRemovida });
+  } else {
+    res.status(404).json({ mensagem: "Receita não encontrada" });
+  }
+});
+
+// Rotas para fluxo de aprovação (admin.html)
+app.post("/enviar-receita", (req, res) => {
+  const { titulo, ingredientes, preparo } = req.body;
+  const novaReceita = {
+    id: Date.now(),
+    titulo,
+    ingredientes,
+    preparo,
+    status: "pendente"
+  };
+
+  let receitasPendentes = [];
+  if (fs.existsSync("receitasPendentes.json")) {
+    const data = fs.readFileSync("receitasPendentes.json");
+    receitasPendentes = JSON.parse(data);
+  }
+
+  receitasPendentes.push(novaReceita);
+  fs.writeFileSync("receitasPendentes.json", JSON.stringify(receitasPendentes, null, 2));
+
+  res.status(200).json({ mensagem: "Receita enviada para revisão!" });
+});
+
+app.get("/receitas-pendentes", (req, res) => {
+  if (fs.existsSync("receitasPendentes.json")) {
+    const data = fs.readFileSync("receitasPendentes.json");
+    res.json(JSON.parse(data));
+  } else {
+    res.json([]);
+  }
+});
+
+app.put("/receitas-pendentes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  if (fs.existsSync("receitasPendentes.json")) {
+    const data = fs.readFileSync("receitasPendentes.json");
+    let receitas = JSON.parse(data);
+
+    const idx = receitas.findIndex(r => r.id === id);
+    if (idx !== -1) {
+      receitas[idx].status = req.body.status; // "aprovada" ou "recusada"
+      fs.writeFileSync("receitasPendentes.json", JSON.stringify(receitas, null, 2));
+      res.json(receitas[idx]);
+    } else {
+      res.status(404).json({ mensagem: "Receita não encontrada" });
+    }
+  } else {
+    res.status(404).json({ mensagem: "Nenhuma receita pendente" });
+  }
+});
+
+const path = require("path");
+
+// servir arquivos estáticos
+app.use(express.static(path.join(__dirname, "public")));
+
+const path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
+
 
 // Iniciar servidor
 app.listen(PORT, () => {

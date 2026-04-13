@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "expo-image-picker": "^55.0.14",
+    "nodemailer": "^8.0.5",
     "react-native-image-picker": "^8.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14"
   }
 }

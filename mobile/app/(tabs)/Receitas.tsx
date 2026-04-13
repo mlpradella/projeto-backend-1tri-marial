@@ -37,10 +37,37 @@ export default function TabTwoScreen() {
     }
   };
 
-  const enviarReceita = () => {
-    // Backend/Serviço de gerenciamento
-    Alert.alert("Sucesso", "Sua receita foi enviada para a revisão!");
+  const enviarReceita = async () => {
+    try {
+      const response = await fetch("http://10.0.2.2:3000/enviar-receita", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          titulo: nomeReceita,
+          ingredientes: ingredientes,
+          preparo: modoPreparo
+        })
+      });      
+  
+      if (response.ok) {
+        Alert.alert("Sucesso", "Sua receita foi enviada para revisão!");
+        // limpa os campos depois de enviar
+        setNomeReceita("");
+        setIngredientes("");
+        setModoPreparo("");
+        setImagem1(null);
+        setImagem2(null);
+      } else {
+        Alert.alert("Erro", "Não foi possível enviar a receita.");
+      }
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Erro", "Falha na comunicação com o servidor.");
+    }
   };
+  
 
   return (
     <ParallaxScrollView
