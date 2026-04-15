@@ -37,37 +37,17 @@ export default function TabTwoScreen() {
     }
   };
 
-  const enviarReceita = async () => {
-    try {
-      const response = await fetch("http://10.0.2.2:3000/enviar-receita", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          titulo: nomeReceita,
-          ingredientes: ingredientes,
-          preparo: modoPreparo
-        })
-      });      
-  
-      if (response.ok) {
-        Alert.alert("Sucesso", "Sua receita foi enviada para revisão!");
-        // limpa os campos depois de enviar
-        setNomeReceita("");
-        setIngredientes("");
-        setModoPreparo("");
-        setImagem1(null);
-        setImagem2(null);
-      } else {
-        Alert.alert("Erro", "Não foi possível enviar a receita.");
-      }
-    } catch (error) {
-      console.log(error);
-      Alert.alert("Erro", "Falha na comunicação com o servidor.");
-    }
+  // Função que simula o envio
+  const enviarReceita = () => {
+    Alert.alert("Sucesso", "Sua receita foi enviada para revisão!");
+
+    // Limpa os campos
+    setNomeReceita("");
+    setIngredientes("");
+    setModoPreparo("");
+    setImagem1(null);
+    setImagem2(null);
   };
-  
 
   return (
     <ParallaxScrollView
@@ -87,6 +67,7 @@ export default function TabTwoScreen() {
         <TextInput
           style={[styles.input, styles.nomeReceitaInput]}
           placeholder="Nome da Receita"
+          placeholderTextColor="#fff"
           value={nomeReceita}
           onChangeText={setNomeReceita}
           textAlign="center"
@@ -116,6 +97,7 @@ export default function TabTwoScreen() {
         <TextInput
           style={[styles.input, styles.multilineInput]}
           placeholder="Ingredientes necessários"
+          placeholderTextColor="#fff"
           value={ingredientes}
           onChangeText={setIngredientes}
           multiline={true}
@@ -126,6 +108,7 @@ export default function TabTwoScreen() {
         <TextInput
           style={[styles.input, styles.multilineInput]}
           placeholder="Modo de preparo"
+          placeholderTextColor="#fff"
           value={modoPreparo}
           onChangeText={setModoPreparo}
           multiline={true}
@@ -156,6 +139,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginTop: 80,
     backgroundColor: '#8C5B3E',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   subtitle: {
     fontFamily: Fonts.serif,
@@ -174,14 +159,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 8,
     backgroundColor: '#E1C4AC',
+    borderRadius: 10,
+    color: '#fff', // textos em branco
   },
   nomeReceitaInput: {
     height: 60,
     fontFamily: Fonts.serif,
     fontSize: 16,
-    backgroundColor: '#E1C4AC',
-    color: '#fff',
-    borderRadius: 10,
+    color: '#fff', // textos em branco
     borderWidth: 1.8,
     borderColor: '#fff',
   },
@@ -210,16 +195,17 @@ const styles = StyleSheet.create({
     minHeight: 80,
     fontFamily: Fonts.serif,
     fontSize: 16,
-    color: '#fff',
-    borderRadius: 10,
+    color: '#fff', // textos em branco
     borderWidth: 1.8,
     borderColor: '#fff',
+    borderRadius: 10,
+    padding: 8,
   },
   placeholder: {
     textAlign: 'center',
     fontFamily: Fonts.serif,
     fontSize: 16,
-    color: '#fff'
+    color: '#fff',
   },
   buttonContainer: {
     marginTop: 30,
