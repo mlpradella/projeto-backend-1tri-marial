@@ -17,18 +17,54 @@ let receitas = [
   {
     id: 1,
     titulo: "Bolo de Cenoura",
-    ingredientes_massa: ["óleo, cenoura, ovos, açúcar, farinha de trigo, fermento"],
-    preparo_massa: ["Bata os ingredientes no liquidificador e leve ao forno por 40 minutos."],
-    ingredientes_cobertura: ["manteiga, chocolate em pó, açúcar, leite"],
-    preparo_cobertura: ["Misture tudo no fogo até ficar cremoso e cubra o bolo."]
+    ingredientes_massa: [
+      "óleo",
+      "cenoura",
+      "ovos",
+      "açúcar",
+      "farinha de trigo",
+      "fermento"
+    ],
+    preparo_massa: [
+      "Bata os ingredientes no liquidificador.",
+      "Leve ao forno por 40 minutos."
+    ],
+    ingredientes_cobertura: [
+      "manteiga",
+      "chocolate em pó",
+      "açúcar",
+      "leite"
+    ],
+    preparo_cobertura: [
+      "Misture tudo no fogo até ficar cremoso.",
+      "Cubra o bolo."
+    ]
   },
   {
     id: 2,
     titulo: "Bolo de Prestígio",
-    ingredientes_massa: ["ovos, óleo, leite, açúcar, chocolate em pó, farinha de trigo, fermento, coco ralado"],
-    preparo_massa: ["Misture os ingredientes e asse por 30 minutos."],
-    ingredientes_recheio: ["leite condensado, margarina, coco ralado"],
-    preparo_recheio: ["Leve ao fogo até desgrudar do fundo da panela."]
+    ingredientes_massa: [
+      "ovos",
+      "óleo",
+      "leite",
+      "açúcar",
+      "chocolate em pó",
+      "farinha de trigo",
+      "fermento",
+      "coco ralado"
+    ],
+    preparo_massa: [
+      "Misture os ingredientes.",
+      "Asse por 30 minutos."
+    ],
+    ingredientes_recheio: [
+      "leite condensado",
+      "margarina",
+      "coco ralado"
+    ],
+    preparo_recheio: [
+      "Leve ao fogo até desgrudar do fundo da panela."
+    ]
   }
 ];
 
@@ -50,14 +86,18 @@ app.get("/receitas/:id", (req, res) => {
     res.status(404).json({ mensagem: "Receita não encontrada" });
   }
 });
-
 app.post("/receitas", (req, res) => {
   const novaReceita = {
     id: receitas.length + 1,
     titulo: req.body.titulo,
-    ingredientes: req.body.ingredientes,
-    preparo: req.body.preparo
+    ingredientes_massa: req.body.ingredientes_massa || [],
+    preparo_massa: req.body.preparo_massa || [],
+    ingredientes_cobertura: req.body.ingredientes_cobertura || [],
+    preparo_cobertura: req.body.preparo_cobertura || [],
+    ingredientes_recheio: req.body.ingredientes_recheio || [],
+    preparo_recheio: req.body.preparo_recheio || []
   };
+
   receitas.push(novaReceita);
   res.status(201).json(novaReceita);
 });
