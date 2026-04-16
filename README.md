@@ -39,7 +39,7 @@ O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um e
 ## Imagem da página
 ![telalogin](mobile/assets/images/telalogin.png)
 
-# Segunda tela (Tela de receita)
+# Segunda tela (Tela de receita) Kamilly Lacerda
 ### Descrição 
 - Está é a segunda página do aplicativo, a tela onde as receitas dos bolos estão. O usuário pode olhar nesta tela, fotos dos bolos e uma breve descrição. 
 
@@ -55,7 +55,7 @@ O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um e
 ## Imagem da página 
 ![telalogin](mobile/assets/images/telareceitas.png)
 
-# Terceira tela 
+# Terceira tela (Tela de adicionar receitas) Bianca A
 ### Descrição
 - Está é a terceira página do aplicativo. O usuário pode adicionar suas receitas nesta tela, com fotos e descrições.
 
