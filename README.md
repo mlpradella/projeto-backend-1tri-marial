@@ -9,6 +9,9 @@
 # Protótipo do Figma 
  https://www.figma.com/design/JgezY69buXCaMDOsoS013v/Site-de-Receitas?node-id=0-1&t=HbE1X56RDC3e34rl-1
 
+# Documentação do projeto 
+https://docs.google.com/document/d/11MAnFOCgTEp5WIol2XemeUgR8QJtQ7agnrie12lLEv0/edit?tab=t.0#heading=h.50md75bvwgqc
+
 # Sobre o Aplicativo
 O aplicativo foi desenvolvido com o objetivo de reunir receitas de bolos em um espaço digital simples. Ele permite que os usuários conheçam novas receitas, leiam descrições e adicionem suas próprias criações. Nosso projeto é constituido por três páginas, login, receitas e adicionar receitas. A página de login é onde o usuário pode adicionar seu email e senha e pode acessar o sistema, a de receitas é onde o usuário consegue ver todas as receitas de bolo já cadastradas junto de uma breve descrição, e a de adicionar é receitas é a página em que o usuário pode adicionar sua própria receita.
 
