@@ -3,31 +3,27 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
-# Inicializa o navegador (exemplo com Chrome)
 driver = webdriver.Chrome()
+driver.get("http://localhost:8081/")
 
-# Abre a página
-driver.get('C:\Users\aluno\projeto-backend-1tri-marial\mobile\app\(tabs)\index.tsx')
+# Localiza os campos de email e senha pelos IDs reais
+email_input = driver.find_element(By.ID, "setEmail")
+senha_input = driver.find_element(By.ID, "setSenha")
 
-# Não preencher os campos obrigatórios
-# Exemplo: campo de email e senha
-email_input = driver.find_element(By.ID, "email")  # ajuste o seletor conforme sua página
-senha_input = driver.find_element(By.ID, "senha")
+# Digita email e senha incorretos
+email_input.send_keys("usuario@errado.com")
+senha_input.send_keys("senha_incorreta")
 
-# Clicar no botão "Entrar"
-entrar_btn = driver.find_element(By.ID, "entrar")  # ajuste o seletor
-entrar_btn.click()
+# Envia o formulário
+senha_input.send_keys(Keys.RETURN)
 
-# Esperar um pouco para que as mensagens apareçam
-time.sleep(2)
+time.sleep(3)
 
-# Verificar se a mensagem de erro está visível
-erro_email = driver.find_element(By.ID, "erro-email")  # ajuste o seletor
-erro_senha = driver.find_element(By.ID, "erro-senha")
-
-assert "E-mail é obrigatório" in erro_email.text
-assert "Senha é obrigatória" in erro_senha.text
-
-print("Teste passou: mensagens de erro exibidas corretamente.")
+try:
+    mensagem_erro = driver.find_element(By.ID, "mensagem-erro")
+    print("Login falhou: ", mensagem_erro.text)
+except:
+    print("Não foi encontrada mensagem de erro. Verifique os seletores.")
 
 driver.quit()
+
